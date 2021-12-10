@@ -48,7 +48,7 @@
  * 
  * dest will be set to a malloc'd list of the tokens - dest_ntokens will be set to the number of tokens.
  */
-    int
+int
 libtok_tokenize(char *str, char **delims, int n, int *csp_esc, 
         char *escape_str, int have_escapes, int delims_as_tokens,
         char*** dest, int* dest_ntokens)
