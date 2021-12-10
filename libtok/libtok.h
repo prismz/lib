@@ -5,6 +5,7 @@
  *
  * TODO:
  * check for memory leaks with valgrind
+ * fix the weird spacing in GitHub
  */
 
 #ifndef LIBTOK_H
@@ -83,9 +84,9 @@ libtok_tokenize(char *str, char **delims, int n, int *csp_esc,
 
 	/* string tokens */
 	char **tokens;
-    int allocated_tokens = 256;
+        int allocated_tokens = 256;
 	int current_token = 0;
-    tokens = malloc(sizeof(char*) * allocated_tokens);
+        tokens = malloc(sizeof(char*) * allocated_tokens);
 
 	/* allocate the int arrays */
 	starts = malloc(sizeof(int) * allocated);
