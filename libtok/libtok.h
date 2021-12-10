@@ -5,7 +5,6 @@
  *
  * TODO:
  * check for memory leaks with valgrind
- * fix the weird spacing in GitHub
  */
 
 #ifndef LIBTOK_H
@@ -84,9 +83,9 @@ libtok_tokenize(char *str, char **delims, int n, int *csp_esc,
 
 	/* string tokens */
 	char **tokens;
-        int allocated_tokens = 256;
+int allocated_tokens = 256;
 	int current_token = 0;
-        tokens = malloc(sizeof(char*) * allocated_tokens);
+tokens = malloc(sizeof(char*) * allocated_tokens);
 
 	/* allocate the int arrays */
 	starts = malloc(sizeof(int) * allocated);
@@ -100,23 +99,23 @@ libtok_tokenize(char *str, char **delims, int n, int *csp_esc,
 	int check_for_escapes = (have_escapes || escape_str == NULL || csp_esc == NULL);
 
 	/* build lists of indices (int *starts, int *ends) */
-    for (size_t i = 0; i < strlen(str); i++) {
-        char* str_with_offset = str + i;
-        int matching = 0;
+for (size_t i = 0; i < strlen(str); i++) {
+char* str_with_offset = str + i;
+int matching = 0;
 		int delim_len = 0;
 		int is_escaped = 0;
-        if (check_for_escapes) {  /* check for a preceding escape character */
+if (check_for_escapes) {  /* check for a preceding escape character */
 			int escape_offset = i - strlen(escape_str);
 
-            char *str_before_token = str + escape_offset;
+char *str_before_token = str + escape_offset;
 
-            if (escape_offset < (int)strlen(str) &&   /* check that we won't overflow */
+if (escape_offset < (int)strlen(str) &&   /* check that we won't overflow */
 					!strncmp(str_before_token, escape_str, strlen(escape_str))) {  /* compare previous characters to escape character */
 
 				is_escaped = 1;
 			}
 
-        }
+}
 
 		for (int i = 0; i < n; i++) {  /* begin checking for matching tokens */
 			if (!strncmp(str_with_offset, delims[i], strlen(delims[i]))) {
@@ -147,7 +146,7 @@ libtok_tokenize(char *str, char **delims, int n, int *csp_esc,
 			starts[current_starts++] = token_start;
 			ends[current_ends++] = token_end;
 		}
-    }
+}
 
 	/* begin adding tokens to char **tokens */
 
