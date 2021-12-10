@@ -48,10 +48,10 @@
  * 
  * dest will be set to a malloc'd list of the tokens - dest_ntokens will be set to the number of tokens.
  */
-int
+	int
 libtok_tokenize(char *str, char **delims, int n, int *csp_esc, 
-					char *escape_str, int have_escapes, int delims_as_tokens,
-					char*** dest, int* dest_ntokens)
+		char *escape_str, int have_escapes, int delims_as_tokens,
+		char*** dest, int* dest_ntokens)
 {
 	int rc = 0;  /* return code */
 
@@ -83,9 +83,9 @@ libtok_tokenize(char *str, char **delims, int n, int *csp_esc,
 
 	/* string tokens */
 	char **tokens;
-int allocated_tokens = 256;
+	int allocated_tokens = 256;
 	int current_token = 0;
-tokens = malloc(sizeof(char*) * allocated_tokens);
+	tokens = malloc(sizeof(char*) * allocated_tokens);
 
 	/* allocate the int arrays */
 	starts = malloc(sizeof(int) * allocated);
@@ -99,23 +99,23 @@ tokens = malloc(sizeof(char*) * allocated_tokens);
 	int check_for_escapes = (have_escapes || escape_str == NULL || csp_esc == NULL);
 
 	/* build lists of indices (int *starts, int *ends) */
-for (size_t i = 0; i < strlen(str); i++) {
-char* str_with_offset = str + i;
-int matching = 0;
+	for (size_t i = 0; i < strlen(str); i++) {
+		char* str_with_offset = str + i;
+		int matching = 0;
 		int delim_len = 0;
 		int is_escaped = 0;
-if (check_for_escapes) {  /* check for a preceding escape character */
+		if (check_for_escapes) {  /* check for a preceding escape character */
 			int escape_offset = i - strlen(escape_str);
 
-char *str_before_token = str + escape_offset;
+			char *str_before_token = str + escape_offset;
 
-if (escape_offset < (int)strlen(str) &&   /* check that we won't overflow */
+			if (escape_offset < (int)strlen(str) &&   /* check that we won't overflow */
 					!strncmp(str_before_token, escape_str, strlen(escape_str))) {  /* compare previous characters to escape character */
 
 				is_escaped = 1;
 			}
 
-}
+		}
 
 		for (int i = 0; i < n; i++) {  /* begin checking for matching tokens */
 			if (!strncmp(str_with_offset, delims[i], strlen(delims[i]))) {
@@ -146,7 +146,7 @@ if (escape_offset < (int)strlen(str) &&   /* check that we won't overflow */
 			starts[current_starts++] = token_start;
 			ends[current_ends++] = token_end;
 		}
-}
+	}
 
 	/* begin adding tokens to char **tokens */
 
@@ -161,13 +161,13 @@ if (escape_offset < (int)strlen(str) &&   /* check that we won't overflow */
 				rc = 1;
 				goto end;
 			}
-	
+
 			int k = 0;
 			int rem_esc = 0;  /* remaining characters of escape_str, used to ignore escape str in final tokens */
 			for (int j = current_token_begin; j < start; j++) {
 				if (!strncmp(str + j, escape_str, strlen(escape_str)))
 					rem_esc = (int)strlen(escape_str);
-				
+
 				if (rem_esc == 0)
 					tokens[current_token][k++] = str[j];
 				else
@@ -184,7 +184,7 @@ if (escape_offset < (int)strlen(str) &&   /* check that we won't overflow */
 				rc = 1;
 				goto end;
 			}
-			
+
 			int k = 0;
 			for (int j = start; j < end; j++) {
 				tokens[current_token][k++] = str[j];	
@@ -204,7 +204,7 @@ if (escape_offset < (int)strlen(str) &&   /* check that we won't overflow */
 			rc = 1;
 			goto end;
 		}
-	
+
 		/* add last token */
 		int k = 0;
 		for (size_t i = current_token_begin; i < strlen(str); i++)
