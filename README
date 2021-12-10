@@ -5,3 +5,4 @@ Most are a work in progress and I encourage you to test them if you are using th
 
 So far the following libraries are completed:
     1. libtok - a simple tokenizer library
+    2. libgeom - a very small library of geometry functions
