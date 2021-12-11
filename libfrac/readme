@@ -1,3 +1,16 @@
 libfrac
 -------
-simple fraction handling library
+A simple fraction handling library.
+
+types:
+    struct lf_frac {
+        int n;
+        int numer;
+        int denom;
+    };
+
+functions:
+    lf_find_frac(double n, struct lf_frac *frac); - converts double to a fraction.
+
+linking:
+    link with -lm.

@@ -1,23 +1,17 @@
 libgeom
 -------
-This is a *very* small library.
+A small library for geometry using doubles.
 
-Requires math.h (link with -lm)
+types:
+    struct lg_point {
+        double x;
+        double y;
+    };
 
-A library with some simple geometry functions.
-You can define your own struct for a point on the coordinate plane as "lg_point",
-for example:
+functions:
+    void lg_midpoint(struct lg_point *p1, struct lg_point *p2, struct lg_point *dest); - midpoint of two points
+    double lg_distance(struct lg_point *p1, struct lg_point *p2); - distance between two points
+    double lg_pythagorean(double a, double b, double c); - finds pythagorean theorem - pass 0 as unknown value. returns -1 on error.
 
-`
-struct my_custom_point {
-    double x, y;
-    char* other_field;
-};
-
-#define lg_point my_custom_point
-
-...
-`
-
-libgeom will not set any other fields of the struct besides variables x and y.
-libgeom uses doubles.
+linking:
+    link with -lm.

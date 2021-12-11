@@ -1,9 +1,8 @@
 libtok
 ------
-libtok is a simple tokenizer library written in C.
-It is currently a work in progress. It supports
-using multiple deliminators and custom escape characters,
-which can be toggled for each deliminator.
+libtok is a simple tokenizer library (currently buggy).
+Read the comments in the source for a full explanation.
 
-You can read the comments in the source if you'd like to learn more.
-Modify it as you wish under the license terms.
+This library requires no special linking and defines no
+custom types.
+    

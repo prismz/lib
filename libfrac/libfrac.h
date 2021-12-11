@@ -1,5 +1,5 @@
-#ifndef LIBFRACK_H
-#define LIBFRACK_H
+#ifndef LIBFRAC_H
+#define LIBFRAC_H
 
 #include <stdio.h>
 #include <stdlib.h>
